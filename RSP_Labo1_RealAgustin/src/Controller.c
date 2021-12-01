@@ -418,6 +418,45 @@ int controller_ListPerritoConRacion(LinkedList* pArrayListPerrito)
 	printf("\n");
 	return retorno;
 }
+int controller_ListPerritoConDirecionHogar(LinkedList* pArrayListPerritoConHogar, LinkedList* listHogar)
+{
+	int retorno = 0;
+	int i=0;
+	char auxDireccion[50];
+	int lenList = ll_len(pArrayListPerritoConHogar);
+
+	sPerritoConHogar* this;
+	printf("%-10s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n","Id","Nombre","peso","Edad","raza","idDireccion", "direccion");
+	for (i = 0; i < lenList; ++i)
+	{
+		this = (sPerritoConHogar*)ll_get(pArrayListPerritoConHogar, i);
+		obtenerDireccion(listHogar,this->idDireccion, auxDireccion);
+		printf("%-10d %-15s %-15.2f %-15d %-15s, %-15d, %-15s\n",this->id, this->nombre, this->peso, this->edad, this->raza,this->idDireccion, auxDireccion);
+		retorno = 1;
+	}
+	printf("\n");
+	return retorno;
+}
+int obtenerDireccion(LinkedList* listaHogar, int idHogar, char* direccionObtenida)
+{
+	int retorno = 0;
+		int i=0;
+		int lenList = ll_len(listaHogar);
+
+		sHogar* this;
+
+		for (i = 0; i < lenList; ++i)
+		{
+			this = (sHogar*)ll_get(listaHogar, i);
+			if(this->id==idHogar)
+			{
+				strcpy(direccionObtenida, this->direccion);
+			}
+			retorno = 1;
+		}
+		printf("\n");
+		return retorno;
+}
 int controller_saveAsText(char* path , LinkedList* pArrayListPerrito)
 {
 	int retorno=-1;

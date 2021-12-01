@@ -4,7 +4,8 @@
 #include "Controller.h"
 #include "inputs.h"
 #include "Perrito.h"
-
+#include "sHogar.h"
+#include "sPerritoConHogar.h"
 
 int main()
 {
@@ -13,6 +14,8 @@ int main()
     int banderaPrimerLista=0;
 
     LinkedList* listaPerritos=ll_newLinkedList();
+    LinkedList* listaHogar=ll_newLinkedList();
+    LinkedList* listaHogarConPerrito=ll_newLinkedList();
     LinkedList* listaMapeada=NULL;
     LinkedList* Galgos=NULL;
 
@@ -30,7 +33,8 @@ int main()
 								"4.listar Perritos con sus raciones de comida.\n"
     							"5.calcular filtro Galgo.\n"
 								"6.Mostrar el archivo “galgosFlaquitos.csv” (modo texto).\n"
-    							"7.Salir.\n"
+    							"7.Generar un listado de todos los perritos con sus hogares ordenado por dirección en forma descendente.\n"
+    							"8.Salir.\n"
 								"---------------------------------------------------------------------------------\n"
 								"Ingrese una opcion: ",
 
@@ -44,9 +48,10 @@ int main()
 								"4.listar Perritos con sus raciones de comida.\n"
 								"5.calcular filtro Galgo.\n"
 								"6.Mostrar el archivo “galgosFlaquitos.csv” (modo texto).\n"
-								"7.Salir.\n"
+								"7.Generar un listado de todos los perritos con sus hogares ordenado por dirección en forma descendente.\n"
+								"8.Salir.\n"
 								"---------------------------------------------------------------------------------\n"
-								"Opcion invalida, reingrese: ",1, 7);
+								"Opcion invalida, reingrese: ",1, 8);
 
 
 
@@ -127,12 +132,27 @@ int main()
             	option=0;
             	break;
             case 7:
+            	if(ll_len(listaPerritos)!=0)
+            	{
+
+            		parser_PerritoConHogarFromText("perritosConHogar.csv", listaHogar);
+            		parser_HogarFromText("hogares.csv",listaHogar);
+            		printf("Se guardo correctamente en modo texto...\n");
+            		controller_ListPerritoConDirecionHogar(listaHogarConPerrito, listaHogar);
+            	}
+            	else
+            	{
+            		printf("No se ingreso ningun perrito a la lista y no se mapeo la racion de comida...\n");
+            	}
+            	option=0;
+            	break;
+            case 8:
             	ll_deleteLinkedList(listaPerritos);
             	printf("Saliendo del sistema...");
             	break;
         }
         system("pause");
-    }while(option != 7);
+    }while(option != 8);
     return 0;
 }
 

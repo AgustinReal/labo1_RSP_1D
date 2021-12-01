@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "../src/LinkedList.h"
 #include "Perrito.h"
-
+#include "sPerritoConHogar.h"
+#include "sHogar.h"
 int parser_PerritoFromText(FILE* pFile , LinkedList* pArrayListPerrito)
 {
 
@@ -28,6 +29,88 @@ int parser_PerritoFromText(FILE* pFile , LinkedList* pArrayListPerrito)
 						if(aux != 0)
 						{
 							sPerrito_delete(Perrito);
+							break;
+						}
+						else
+						{
+							todoOk = 1;
+						}
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+	    return todoOk;
+}
+int parser_PerritoConHogarFromText(FILE* pFile , LinkedList* listaHogar)
+{
+
+	int todoOk = 0;
+		sPerritoConHogar* Perrito;
+		char buffer[6][30];
+		int aux;
+
+		if(pFile != NULL && listaHogar != NULL)
+		{
+			fscanf(pFile,"%[^,],%[^,],%[^,], %[^,], %[^,],%[^\n]\n",buffer[0], buffer[1], buffer[2], buffer[3], buffer[4],buffer[5]);
+
+			while(!feof(pFile))
+			{
+				aux = fscanf(pFile,"%[^,],%[^,],%[^,], %[^,], %[^,],%[^\n]\n",buffer[0], buffer[1], buffer[2], buffer[3], buffer[4],buffer[5]);
+				if(aux == 6)
+				{
+					Perrito = sPerritoConHogar_newParametros(buffer[0], buffer[1], buffer[2], buffer[3], buffer[4],buffer[5]);
+
+					if(Perrito != NULL)
+					{
+						aux = ll_add(listaHogar, Perrito);
+						if(aux != 0)
+						{
+							sPerrito_delete(Perrito);
+							break;
+						}
+						else
+						{
+							todoOk = 1;
+						}
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+	    return todoOk;
+}
+int parser_HogarFromText(FILE* pFile , LinkedList* listaHogar)
+{
+
+	int todoOk = 0;
+		sHogar* hogar;
+		char buffer[2][30];
+		int aux;
+
+		if(pFile != NULL && listaHogar != NULL)
+		{
+			fscanf(pFile,"%[^,],%[^\n]\n",buffer[0], buffer[1]);
+
+			while(!feof(pFile))
+			{
+				aux = fscanf(pFile,"%[^,],%[^\n]\n",buffer[0], buffer[1]);
+				if(aux == 6)
+				{
+					hogar = sHogar_newParametros(buffer[0], buffer[1]);
+
+					if(hogar != NULL)
+					{
+						aux = ll_add(listaHogar, hogar);
+						if(aux != 0)
+						{
+							sHogar_delete(hogar);
 							break;
 						}
 						else

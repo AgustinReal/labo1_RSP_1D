@@ -8,7 +8,8 @@
 
 #ifndef PARSER_H_
 #define PARSER_H_
-
+#include "sPerritoConHogar.h"
+#include "sHogar.h"
 /**
  * @fn int parser_EmployeeFromText(FILE*, LinkedList*)
  * @brief Esta funcion parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
@@ -31,4 +32,6 @@ int parser_PerritoFromText(FILE* pFile , LinkedList* pArrayListEmployee);
 int parser_PerritoFromBinary(FILE* pFile , LinkedList* pArrayListEmployee);
 int guardarComoTexto(char* path, LinkedList* pLista);
 int cargarTexto(char* path , LinkedList* pLista);
+int parser_PerritoConHogarFromText(FILE* pFile , LinkedList* listaHogar);
+int parser_HogarFromText(FILE* pFile , LinkedList* listaHogar);
 #endif /* PARSER_H_ */

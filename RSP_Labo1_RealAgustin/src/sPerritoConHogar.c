@@ -1,34 +1,41 @@
+/*
+ * ePerritoConHogar.c
+ *
+ *  Created on: 1 dic. 2021
+ *      Author: Usuario
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "Perrito.h"
+#include "sHogar.h"
+#include "sPerritoConHogar.h"
 
-
-
-sPerrito* sPerrito_new()
+sPerritoConHogar* sPerritoConHogar_new()
 {
-	sPerrito* perritoRetorno=NULL;
-	perritoRetorno=(sPerrito*)malloc(sizeof(sPerrito));
+	sPerritoConHogar* perritoRetorno=NULL;
+	perritoRetorno=(sPerritoConHogar*)malloc(sizeof(sPerritoConHogar));
 	return perritoRetorno;
 }
-sPerrito* sPerrito_newParametros(char* idStr, char* nombreStr, char* pesoStr, char* edadStr, char* razaStr)
+sPerritoConHogar* sPerritoConHogar_newParametros(char* idStr, char* nombreStr, char* pesoStr, char* edadStr, char* razaStr, char* idDireccionStr)
 {
-	sPerrito* perritoRetorno = NULL;
-	perritoRetorno = sPerrito_new();
+	sPerritoConHogar* perritoRetorno = NULL;
+	perritoRetorno = sPerritoConHogar_new();
 
 	if(perritoRetorno != NULL)
 	{
-		sPerrito_setId(perritoRetorno, atoi(idStr));
-		sPerrito_setNombre(perritoRetorno, nombreStr);
-		sPerrito_setEdad(perritoRetorno, atoi(edadStr));
-		sPerrito_setRaza(perritoRetorno, razaStr);
-		sPerrito_setPeso(perritoRetorno, atof(pesoStr));
-
+		sPerritoConHogar_setId(perritoRetorno, atoi(idStr));
+		sPerritoConHogar_setNombre(perritoRetorno, nombreStr);
+		sPerritoConHogar_setEdad(perritoRetorno, atoi(edadStr));
+		sPerritoConHogar_setRaza(perritoRetorno, razaStr);
+		sPerritoConHogar_setPeso(perritoRetorno, atof(pesoStr));
+		sPerritoConHogar_setIdDireccion(perritoRetorno, atoi(idDireccionStr));
 	}
 	return perritoRetorno;
 }
-void sPerrito_delete(sPerrito* this)
+void sPerritoConHogar_delete(sPerritoConHogar* this)
 {
 	if(this != NULL)
 	{
@@ -36,7 +43,7 @@ void sPerrito_delete(sPerrito* this)
 		this=NULL;
 	}
 }
-int sPerrito_setId(sPerrito* this, int id)
+int sPerritoConHogar_setId(sPerritoConHogar* this, int id)
 {
 	int seCargo=0;
 	if(this!=NULL)
@@ -46,7 +53,7 @@ int sPerrito_setId(sPerrito* this, int id)
 	}
 	return seCargo;
 }
-int sPerrito_getId(sPerrito* this,int* id)
+int sPerritoConHogar_getId(sPerritoConHogar* this,int* id)
 {
 	int retorno=-1;
 
@@ -57,7 +64,28 @@ int sPerrito_getId(sPerrito* this,int* id)
 	}
 	return retorno;
 }
-int sPerrito_setNombre(sPerrito* this, char* nombre)
+int sPerritoConHogar_setIdDireccion(sPerritoConHogar* this, int idDireccion)
+{
+	int seCargo=0;
+	if(this!=NULL)
+	{
+		this->idDireccion=idDireccion;
+		seCargo=1;
+	}
+	return seCargo;
+}
+int sPerritoConHogar_getIdDireccion(sPerritoConHogar* this,int* idDireccion)
+{
+	int retorno=-1;
+
+	if(this != NULL )
+	{
+		*idDireccion=this->idDireccion;
+		retorno=1;
+	}
+	return retorno;
+}
+int sPerritoConHogar_setNombre(sPerritoConHogar* this, char* nombre)
 {
 	int seCargo = 0;
 	if(this != NULL && nombre != NULL)
@@ -67,7 +95,7 @@ int sPerrito_setNombre(sPerrito* this, char* nombre)
 	}
 	return seCargo;
 }
-int sPerrito_getNombre(sPerrito* this, char* nombre)
+int sPerritoConHogar_getNombre(sPerritoConHogar* this, char* nombre)
 {
 
 	int retorno=-1;
@@ -79,7 +107,7 @@ int sPerrito_getNombre(sPerrito* this, char* nombre)
 	}
 	return retorno;
 }
-int sPerrito_setEdad(sPerrito* this, int edad)
+int sPerritoConHogar_setEdad(sPerritoConHogar* this, int edad)
 {
 	int seCargo = 0;
 	if(this != NULL )
@@ -89,7 +117,7 @@ int sPerrito_setEdad(sPerrito* this, int edad)
 	}
 	return seCargo;
 }
-int sPerrito_getEdad(sPerrito* this,int* edad)
+int sPerritoConHogar_getEdad(sPerritoConHogar* this,int* edad)
 {
 	int retorno=-1;
 
@@ -100,7 +128,7 @@ int sPerrito_getEdad(sPerrito* this,int* edad)
 	}
 	return retorno;
 }
-int sPerrito_setRaza(sPerrito* this, char* raza)
+int sPerritoConHogar_setRaza(sPerritoConHogar* this, char* raza)
 {
 	int seCargo = 0;
 	if(this != NULL )
@@ -110,7 +138,7 @@ int sPerrito_setRaza(sPerrito* this, char* raza)
 	}
 	return seCargo;
 }
-int sPerrito_getRaza(sPerrito* this, char* raza)
+int sPerritoConHogar_getRaza(sPerritoConHogar* this, char* raza)
 {
 	int retorno=-1;
 
@@ -121,7 +149,7 @@ int sPerrito_getRaza(sPerrito* this, char* raza)
 	}
 	return retorno;
 }
-int sPerrito_setPeso(sPerrito* this, float peso)
+int sPerritoConHogar_setPeso(sPerritoConHogar* this, float peso)
 {
 	int seCargo = 0;
 		if(this != NULL )
@@ -131,7 +159,7 @@ int sPerrito_setPeso(sPerrito* this, float peso)
 		}
 		return seCargo;
 }
-int sPerrito_getPeso(sPerrito* this, float* peso)
+int sPerritoConHogar_getPeso(sPerritoConHogar* this, float* peso)
 {
 	int retorno=-1;
 
@@ -142,7 +170,7 @@ int sPerrito_getPeso(sPerrito* this, float* peso)
 		}
 		return retorno;
 }
-int sPerrito_setcantidadComidaRacion(sPerrito* this, float cantidadComidaRacion)
+int sPerritoConHogar_setcantidadComidaRacion(sPerritoConHogar* this, float cantidadComidaRacion)
 {
 	int seCargo = 0;
 		if(this != NULL )
@@ -152,7 +180,7 @@ int sPerrito_setcantidadComidaRacion(sPerrito* this, float cantidadComidaRacion)
 		}
 		return seCargo;
 }
-int sPerrito_getcantidadComidaRacion(sPerrito* this, float* cantidadComidaRacion)
+int sPerritoConHogar_getcantidadComidaRacion(sPerritoConHogar* this, float* cantidadComidaRacion)
 {
 	int retorno=-1;
 
@@ -184,7 +212,7 @@ int sPerrito_getSexo(sPerrito* this,char* sexo)
 		}
 		return retorno;
 }*/
-void sPerrito_printDatacantidadComidaRacion(sPerrito* this)
+void sPerritoConHogar_printDatacantidadComidaRacion(sPerritoConHogar* this)
 {
     int id; //Variable donde se almacena el id utilizando getId();
     char nombre[35]; //Variable donde se almacena el nombre utilizando getNobre();
@@ -192,16 +220,16 @@ void sPerrito_printDatacantidadComidaRacion(sPerrito* this)
     char raza[35]; //Variable donde se almacena el sueldo utilizando getId();
     float peso;
     float cantidadComidaRacion;
-	sPerrito_getId(this, &id); //Obtengo el Id del empleado
-    sPerrito_getNombre(this, nombre); //Obtengo el nombre del empleado
-    sPerrito_getEdad(this, &edad); //Obtengo las horas trabajadas del empelado
-    sPerrito_getRaza(this, raza); //Obtengo el sueldo del empleado
-    sPerrito_getPeso(this, &peso);
-    sPerrito_getcantidadComidaRacion(this, &cantidadComidaRacion);
+    sPerritoConHogar_getId(this, &id); //Obtengo el Id del empleado
+    sPerritoConHogar_getNombre(this, nombre); //Obtengo el nombre del empleado
+    sPerritoConHogar_getEdad(this, &edad); //Obtengo las horas trabajadas del empelado
+    sPerritoConHogar_getRaza(this, raza); //Obtengo el sueldo del empleado
+    sPerritoConHogar_getPeso(this, &peso);
+    sPerritoConHogar_getcantidadComidaRacion(this, &cantidadComidaRacion);
 
     printf("%d %15s %15.2f %15d %15s %15.2f\n", id, nombre, peso, edad, raza, cantidadComidaRacion); //Muestro los datos del empleado
 }
-void sPerrito_printDatacantidadComidaRacionDirecionHogar(sPerrito* this)
+void sPerritoConHogar_printDatacantidadComidaRacionConDireccion(sPerritoConHogar* this)
 {
     int id; //Variable donde se almacena el id utilizando getId();
     char nombre[35]; //Variable donde se almacena el nombre utilizando getNobre();
@@ -209,31 +237,35 @@ void sPerrito_printDatacantidadComidaRacionDirecionHogar(sPerrito* this)
     char raza[35]; //Variable donde se almacena el sueldo utilizando getId();
     float peso;
     float cantidadComidaRacion;
-	sPerrito_getId(this, &id); //Obtengo el Id del empleado
-    sPerrito_getNombre(this, nombre); //Obtengo el nombre del empleado
-    sPerrito_getEdad(this, &edad); //Obtengo las horas trabajadas del empelado
-    sPerrito_getRaza(this, raza); //Obtengo el sueldo del empleado
-    sPerrito_getPeso(this, &peso);
-    sPerrito_getcantidadComidaRacion(this, &cantidadComidaRacion);
+    sPerritoConHogar_getId(this, &id); //Obtengo el Id del empleado
+    sPerritoConHogar_getNombre(this, nombre); //Obtengo el nombre del empleado
+    sPerritoConHogar_getEdad(this, &edad); //Obtengo las horas trabajadas del empelado
+    sPerritoConHogar_getRaza(this, raza); //Obtengo el sueldo del empleado
+    sPerritoConHogar_getPeso(this, &peso);
+    sPerritoConHogar_getcantidadComidaRacion(this, &cantidadComidaRacion);
 
     printf("%d %15s %15.2f %15d %15s %15.2f\n", id, nombre, peso, edad, raza, cantidadComidaRacion); //Muestro los datos del empleado
 }
-void sPerrito_printData(sPerrito* this)
+void sPerritoConHogar_printData(sPerritoConHogar* this, sHogar* this2)
 {
     int id; //Variable donde se almacena el id utilizando getId();
     char nombre[35]; //Variable donde se almacena el nombre utilizando getNobre();
     int edad; //Variable donde se almacenan las horas trabajadas utilizando getHorasTrabajadas();
     char raza[35]; //Variable donde se almacena el sueldo utilizando getId();
     float peso;
-	sPerrito_getId(this, &id); //Obtengo el Id del empleado
-    sPerrito_getNombre(this, nombre); //Obtengo el nombre del empleado
-    sPerrito_getEdad(this, &edad); //Obtengo las horas trabajadas del empelado
-    sPerrito_getRaza(this, raza); //Obtengo el sueldo del empleado
-    sPerrito_getPeso(this, &peso);
+    int idDireccion;
+    char direccion[35];
+    sPerritoConHogar_getId(this, &id); //Obtengo el Id del empleado
+    sPerritoConHogar_getNombre(this, nombre); //Obtengo el nombre del empleado
+    sPerritoConHogar_getEdad(this, &edad); //Obtengo las horas trabajadas del empelado
+    sPerritoConHogar_getRaza(this, raza); //Obtengo el sueldo del empleado
+    sPerritoConHogar_getPeso(this, &peso);
+    sHogar_getId(this2, &idDireccion);
+    sHogar_getDireccion(this2, direccion);
 
-    printf("%d %15s %15.2f %15d %15s \n", id, nombre, peso, edad, raza); //Muestro los datos del empleado
+    printf("%d %15s %15.2f %15d %15s %15d %15s\n", id, nombre, peso, edad, raza, idDireccion, direccion); //Muestro los datos del empleado
 }
-int sPerrito_ordenarPorNombre(void* punteroUno, void* punteroDos)
+/*int sPerrito_ordenarPorNombre(void* punteroUno, void* punteroDos)
 {
 
 	int retorno=-2;
@@ -339,28 +371,8 @@ int sPerrito_ordenarPeso(void* punteroUno, void* punteroDos)
 	auxPerritoDos=NULL;
 	return retorno;
 }
-/*int sPerrito_ordenarSexo(void* punteroUno, void* punteroDos)
-{
-	int retorno=-2;
-	if(punteroUno!=NULL&&punteroDos!=NULL)
-	{
-		retorno=0;
-		char auxNombreUno[128];
-		char auxNombreDos[128];
-		sPerrito* auxPerrito = (sPerrito*)punteroUno;
-		sPerrito* auxPerritoDos = (sPerrito*)punteroDos;
-		Perrito_getSexo(auxPerrito,auxNombreUno);
-		Perrito_getSexo(auxPerritoDos,auxNombreDos);
 
-		retorno=stricmp(auxNombreUno,auxNombreDos);
 
-		auxPerrito=NULL;
-		auxPerritoDos=NULL;
-
-	}
-	return retorno;
-}*/
-///////// Filtros
 
 int sPerrito_filtro_PerroMasPesados(void* this)
 {
@@ -418,24 +430,7 @@ int sPerrito_filtro_Comparacion(void* this, void* guia)
     return retorno;
 }
 
-/*int Perrito_filtroHembra(void* this)// guarda a todos los que sean hembras
-{
-	int retorno=0;
-	char auxSexo[35];
 
-
-	if(this!=NULL)
-	{
-
-		Perrito_getSexo((sPerrito*)this , auxSexo);
-		if(!stricmp(auxSexo, "female"))
-		{
-			retorno=1;
-		}
-	}
-
-	return retorno;
-}*/
 int sPerrito_filtroSeLLamaKaile(void* this)// guarda a todos los que sean hembras
 {
 	int retorno=0;
@@ -523,22 +518,9 @@ int sPerrito_laQueFiltra(void* this)
 	}
 	return retorno;
 
-}
-/*int Perrito_filtroMaleMenorCinco(void* this)
-{
-	int retorno=0;
-	char auxSexo[35];
-
-	if(this!=NULL)
-	{
-
-		Perrito_getSexo((sPerrito*)this , auxSexo);
-		sPerrito* auxPerrito=NULL;
-		auxPerrito=(sPerrito*) this;
-		if(!stricmp(auxSexo, "male") && auxPerrito->edad<5)
-		{
-			retorno=1;
-		}
-	}
-	return retorno;
 }*/
+
+
+
+
+

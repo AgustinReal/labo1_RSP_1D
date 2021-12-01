@@ -1,9 +1,15 @@
+/*
+ * ePerritoConHogar.h
+ *
+ *  Created on: 1 dic. 2021
+ *      Author: Usuario
+ */
+
+#ifndef SPERRITOCONHOGAR_H_
+#define SPERRITOCONHOGAR_H_
 
 
-#ifndef employee_H_INCLUDED
-#define employee_H_INCLUDED
-
-
+#include "sHogar.h"
 
 typedef struct
 {
@@ -13,10 +19,10 @@ typedef struct
     int edad;
     char raza[35];
     float cantidadComidaRacion;
-   // char sexo[10];
-    //char duenio[35];
+    int idDireccion;
 
-}sPerrito;
+
+}sPerritoConHogar;
 
 /**
  * @fn Employee employee_new*()
@@ -25,7 +31,7 @@ typedef struct
  *
  * @return Retorna el puntero del empleado asignado en la memoria.
  */
-sPerrito* sPerrito_new();
+sPerritoConHogar* sPerritoConHogar_new();
 /**
  * @fn Employee employee_newParametros*(char*, char*, char*, char*)
  * @brief Esta funcion: Se encarga de agregar un nuevo empleado y guardarlo en
@@ -42,7 +48,7 @@ sPerrito* sPerrito_new();
  *
  * @return Retorna el puntero del empleado asignado en la memoria.
  */
-sPerrito* sPerrito_newParametros(char* idStr, char* nombreStr, char* edadStr, char* razaStr, char* pesoStr);
+sPerritoConHogar* sPerritoConHogar_newParametros(char* idStr, char* nombreStr, char* edadStr, char* razaStr, char* pesoStr, char* idDireccionStr);
 /**
  * @fn void employee_delete(Employee*)
  * @brief Esta funcion: Se encarga de eliminar a un	empleado en la memoria dinamica.
@@ -50,7 +56,7 @@ sPerrito* sPerrito_newParametros(char* idStr, char* nombreStr, char* edadStr, ch
  *
  * @param this: Es el empleado a eliminar.
  */
-void sPerrito_delete();
+void sPerritoConHogar_delete();
 /**
  * @fn int employee_setId(Employee*, int)
  * @brief Esta funcion: Se encarga de colocar el Id del empleado en la lista general.
@@ -59,7 +65,7 @@ void sPerrito_delete();
  * @param id: El id a colocar en la lista.
  * @return Retorna 1 o 0: 1 si se puedo cargar o 0 si no se pudo cargar.
  */
-int sPerrito_setId(sPerrito* this,int id);
+int sPerritoConHogar_setId(sPerritoConHogar* this,int id);
 /**
  * @fn int employee_getId(Employee*, int)
  * @brief Esta funcion: Se encarga de obtener el Id del empleado en la lista general.
@@ -68,7 +74,10 @@ int sPerrito_setId(sPerrito* this,int id);
  * @param id: El id a obtener en la lista.
  * @return Retorna 1 o 0: 1 si se puedo cargar o 0 si no se pudo cargar.
  */
-int sPerrito_getId(sPerrito* this,int* id);
+int sPerritoConHogar_getId(sPerritoConHogar* this,int* id);
+int sPerritoConHogar_setIdDireccion(sPerritoConHogar* this, int idDireccion);
+
+int sPerritoConHogar_getIdDireccion(sPerritoConHogar* this,int* idDireccion);
 /**
  * @fn int employee_setNombre(Employee*, char*)
  * @brief Esta funcion: Se encarga de colocar el nombre del empleado en la lista general.
@@ -77,7 +86,7 @@ int sPerrito_getId(sPerrito* this,int* id);
  * @param nombre: El nombre a colocar en la lista.
  * @return Retorna 1 o 0: 1 si se puedo cargar o 0 si no se pudo cargar.
  */
-int sPerrito_setNombre(sPerrito* this,char* nombre);
+int sPerritoConHogar_setNombre(sPerritoConHogar* this,char* nombre);
 /**
  * @fn int employee_getNombre(Employee*, char*)
  * @brief Esta funcion: Se encarga de obtener el nombre del empleado en la lista general.
@@ -86,7 +95,7 @@ int sPerrito_setNombre(sPerrito* this,char* nombre);
  * @param nombre: El nombre a obtener en la lista.
  * @return Retorna 1 o 0: 1 si se puedo cargar o 0 si no se pudo cargar.
  */
-int sPerrito_getNombre(sPerrito* this,char* nombre);
+int sPerritoConHogar_getNombre(sPerritoConHogar* this,char* nombre);
 /**
  * @fn int employee_setHorasTrabajadas(Employee*, int)
  * @brief Esta funcion: Se encarga de colocar las horas trabajadas del empleado en la lista general.
@@ -95,7 +104,7 @@ int sPerrito_getNombre(sPerrito* this,char* nombre);
  * @param horasTrabajadas: Las horas trabajadas a colocar en la lista.
  * @return Retorna 1 o -1: 1 si se puedo cargar o -1 si no se pudo cargar.
  */
-int sPerrito_setEdad(sPerrito* this,int edad);
+int sPerritoConHogar_setEdad(sPerritoConHogar* this,int edad);
 /**
  * @fn int employee_getHorasTrabajadas(Employee*, int*)
  * @brief Esta funcion: Se encarga de obtener las horas trabajadas del empleado en la lista general.
@@ -104,7 +113,7 @@ int sPerrito_setEdad(sPerrito* this,int edad);
  * @param horasTrabajadas: Las horas trabajadas a obtener en la lista.
  * @return Retorna 1 o -1: 1 si se puedo cargar o -1 si no se pudo cargar.
  */
-int sPerrito_getEdad(sPerrito* this,int* edad);
+int sPerritoConHogar_getEdad(sPerritoConHogar* this,int* edad);
 /**
  * @fn int employee_setSueldo(Employee*, int)
  * @brief Esta funcion: Se encarga de colocar el sueldo del empleado en la lista general.
@@ -113,7 +122,7 @@ int sPerrito_getEdad(sPerrito* this,int* edad);
  * @param sueldo: El sueldo a colocar en la lista.
  * @return Retorna 1 o 0: 1 si se puedo cargar o 0 si no se pudo cargar.
  */
-
+int sPerritoConHogar_setRaza(sPerritoConHogar* this, char* raza);
 /**
  * @fn int employee_getSueldo(Employee*, int*)
  * @brief Esta funcion: Se encarga de obtener el sueldo del empleado en la lista general.
@@ -122,63 +131,22 @@ int sPerrito_getEdad(sPerrito* this,int* edad);
  * @param sueldo: El sueldo a obtener en la lista.
  * @return Retorna 1 o 0: 1 si se puedo cargar o 0 si no se pudo cargar.
  */
-int sPerrito_getRaza(sPerrito* this, char* raza);
-/**
- * @fn void employee_printData(Employee*)
- * @brief Esta funcion: Se encarga de mostrar los datos de un empleado.
- *
- * @param this: El empleado a mostrar los datos.
- */
-int sPerrito_setPeso(sPerrito* this, float peso);
-int sPerrito_getPeso(sPerrito* this, float* peso);
-int sPerrito_setSexo(sPerrito* this,char* sexo);
-int sPerrito_getSexo(sPerrito* this,char* sexo);
-int sPerrito_setcantidadComidaRacion(sPerrito* this, float cantidadComidaRacion);
-int sPerrito_getcantidadComidaRacion(sPerrito* this, float* cantidadComidaRacion);
-void sPerrito_printData(sPerrito* this);
-/**
- * @fn int employee_ordenarPorNombre(void*, void*)
- * @brief Esta funciones obtiene 2 direcciones de memoria y los compara
- * devuelve 2 tipos de ordenamiento por nombre.
- *
- * @param punteroUno: El puntero que apunta a la direccion de memomoria del 1er direccion.
- * @param punteroDos: El puntero que apunta a la direccion de memomoria del 2da direccion.
- *
- * @return retorna: -2 si algun puntero es NULL, 0 si son iguales los nombres, -1 si el el segundo es mayor. 1 si el primero es mayor
- */
-int sPerrito_ordenarPorNombre(void* punteroUno, void* punteroDos);
-/**
- * @fn int employee_ordenarPorHoras(void*, void*)
- * @brief Esta funciones obtiene 2 direcciones de memoria y los compara
- * devuelve 2 tipos de ordenamiento por horas trabajadas.
- *
- * @param punteroUno: El puntero que apunta a la direccion de memomoria del 1er direccion.
- * @param punteroDos: El puntero que apunta a la direccion de memomoria del 2da direccion.
- *
- * @return Esta funcion retorna 1 si la la variable que fue asiganada "horasUno" es mayor a "horasDos" o -1 si la la variable que fue asiganada "horasUno" es menor a "horasDos"
- */
+int sPerritoConHogar_getRaza(sPerritoConHogar* this, char* raza);
+
+int sPerritoConHogar_setPeso(sPerritoConHogar* this, float peso);
+int sPerritoConHogar_getPeso(sPerritoConHogar* this, float* peso);
+int sPerritoConHogar_setSexo(sPerritoConHogar* this,char* sexo);
+int sPerritoConHogar_getSexo(sPerritoConHogar* this,char* sexo);
+int sPerritoConHogar_setcantidadComidaRacion(sPerritoConHogar* this, float cantidadComidaRacion);
+int sPerritoConHogar_getcantidadComidaRacion(sPerritoConHogar* this, float* cantidadComidaRacion);
+
+
+//int imprimirPerrosConHogar(linkedlist* listaPerrosConHogar, linkedlist* lista hogares);
+/*
 int sPerrito_ordenarEdad(void* punteroUno, void* punteroDos);
-/**
- * @fn int employee_ordenarPorId(void*, void*)
- * @brief Esta funciones obtiene 2 direcciones de memoria y los compara
- * devuelve 2 tipos de ordenamiento por id.
- *
- * @param punteroUno: El puntero que apunta a la direccion de memomoria del 1er direccion.
- * @param punteroDos: El puntero que apunta a la direccion de memomoria del 2da direccion.
- *
- * @return Esta funcion retorna 1 si la la variable que fue asiganada "IdUno" es mayor a "IdDos" o -1 si la la variable que fue asiganada "IdUno" es menor a "IdDos"
- */
+
 int sPerrito_ordenarPorId(void* punteroUno, void* punteroDos);
-/**
- * @fn int employee_ordenarSueldo(void*, void*)
- * @brief Esta funciones obtiene 2 direcciones de memoria y los compara
- * devuelve 2 tipos de ordenamiento por Sueldo.
- *
- * @param punteroUno: El puntero que apunta a la direccion de memomoria del 1er direccion.
- * @param punteroDos: El puntero que apunta a la direccion de memomoria del 2da direccion.
- *
- * @return Esta funcion retorna 1 si la la variable que fue asiganada "ueldoUno" es mayor a "sueldoDos" o -1 si la la variable que fue asiganada "sueldoUno" es menor a "sueldoDos"
- */
+
 int sPerrito_ordenarRaza(void* punteroUno, void* punteroDos);
 int sPerrito_ordenarPeso(void* punteroUno, void* punteroDos);
 int sPerrito_ordenarSexo(void* punteroUno, void* punteroDos);
@@ -195,4 +163,10 @@ int sPerrito_laQueMapea(void*);
 int sPerrito_laQueFiltra(void*);
 void sPerrito_printDatacantidadComidaRacion(sPerrito* this);
 //int Perrito_filtroMaleMenorCinco(void* this);
-#endif // employee_H_INCLUDED
+*/
+
+
+
+
+
+#endif /* SPERRITOCONHOGAR_H_ */
